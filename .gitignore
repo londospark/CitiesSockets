@@ -1,0 +1,8 @@
+
+.fake
+.ionide
+
+src/**/bin
+src/**/obj
+
+Build/**

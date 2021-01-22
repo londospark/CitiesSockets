@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <Deterministic>False</Deterministic>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <CitiesManagedPath Condition=" '$(OS)' != 'Windows_NT' ">$(Home)/.local/share/Steam/steamapps/common/Cities_Skylines/Cities_Data/Managed/</CitiesManagedPath>
+    <CitiesManagedPath Condition=" '$(OS)' == 'Windows_NT' ">C:\Program Files (x86)\Steam\SteamApps\common\Cities_Skylines\Cities_Data\Managed\</CitiesManagedPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ICities">
+      <HintPath>$(CitiesManagedPath)ICities.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(CitiesManagedPath)UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(CitiesManagedPath)UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="ColossalManaged">
+      <HintPath>$(CitiesManagedPath)ColossalManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(CitiesManagedPath)Assembly-CSharp.dll</HintPath>
+    </Reference>
+
+    <PackageReference Include="jnm2.ReferenceAssemblies.net35" Version="1.0.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
