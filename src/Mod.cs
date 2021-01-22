@@ -2,6 +2,7 @@
 using ColossalFramework;
 using ColossalFramework.UI;
 using ICities;
+using UnityEngine;
 
 [assembly: AssemblyVersion("1.0.*")]
 
@@ -24,6 +25,14 @@ namespace SkylinesMod
         private void OnIntroLoaded()
         {
             Singleton<LoadingManager>.instance.m_introLoaded -= new LoadingManager.IntroLoadedHandler(OnIntroLoaded);
+        }
+
+        public override void OnLevelLoaded(LoadMode mode)
+        {
+            var gameObject = new GameObject("Socket Server");
+            var testServer = gameObject.AddComponent<TCPTestServer>();
+            testServer.StartServer();
+            base.OnLevelLoaded(mode);
         }
 
         private void OnLevelLoaded(SimulationManager.UpdateMode updateMode)
