@@ -15,7 +15,7 @@ namespace SkylinesMod
         {
             base.OnLevelLoaded(mode);
             var testServer = new GameObject("SocketServer").AddComponent<TCPTestServer>();
-            //testServer.StartServer();
+            testServer.StartServer();
         }
 
         public override void OnLevelUnloading()
@@ -32,12 +32,12 @@ namespace SkylinesMod
 
         public void OnEnabled()
         {
-            DebugOutputPanel.AddMessage(ColossalFramework.Plugins.PluginManager.MessageType.Message, "Enabled mod");
+            Debug.Log("Enabled mod");
         }
 
         public void OnDisabled()
         {
-            DebugOutputPanel.AddMessage(ColossalFramework.Plugins.PluginManager.MessageType.Message, "Disabled mod");
+            Debug.Log("Disabled mod");
         }
     }
 }

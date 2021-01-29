@@ -1,6 +1,7 @@
 using ColossalFramework;
 using ColossalFramework.Plugins;
 using ICities;
+using UnityEngine;
 
 namespace SkylinesMod
 {
@@ -15,7 +16,7 @@ namespace SkylinesMod
             if (delta > 2.0f)
             {
                 var trafficFlow = Singleton<VehicleManager>.instance.m_lastTrafficFlow;
-                DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, $"Current traffic would be: {trafficFlow}");
+                Debug.Log($"Current traffic: {trafficFlow}");
                 delta -= 2.0f;
             }
         }
