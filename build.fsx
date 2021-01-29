@@ -60,25 +60,23 @@ Target.create
 Target.create
     "Build"
     (fun _ ->
-        DotNet.build
-            (fun x -> {x with OutputPath = (Some "./Build")})
-            (sprintf "src/%s" modName)
-        |> ignore )
+        DotNet.build (fun x -> { x with OutputPath = (Some "./Build") }) (sprintf "src/%s" modName)
+        |> ignore)
 
 Target.create
     "Install"
     (fun _ ->
+        let filename = (Path.changeExtension ".dll" modName)
         Shell.mkdir (installFolder)
-        Shell.copyFile installFolder (Path.combine buildDir (Path.changeExtension ".dll" modName))
-        Shell.copyFile installFolder (Path.combine buildDir (Path.changeExtension ".pdb" modName)))
+        File.delete (Path.combine installFolder filename)
+        Shell.copyFile installFolder (Path.combine buildDir filename)
+        //Shell.copyFile installFolder (Path.combine buildDir (Path.changeExtension ".pdb" modName))
+        )
 
 open Fake.Core.TargetOperators
 
 // Dependencies
-"Restore"
-    ==> "Clean"
-    ==> "Build"
-    ==> "Install"
+"Restore" ==> "Clean" ==> "Build" ==> "Install"
 
 // start build
 Target.runOrDefault "Install"
