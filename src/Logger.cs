@@ -12,11 +12,11 @@ namespace SkylinesMod
             base.OnUpdate(realTimeDelta, simulationTimeDelta);
 
             delta += realTimeDelta;
-            if (delta > 1.0f)
+            if (delta > 2.0f)
             {
                 var trafficFlow = Singleton<VehicleManager>.instance.m_lastTrafficFlow;
-                DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, $"Current traffic: {trafficFlow}");
-                delta -= 1.0f;
+                DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, $"Current traffic would be: {trafficFlow}");
+                delta -= 2.0f;
             }
         }
     }
